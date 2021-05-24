@@ -1,10 +1,15 @@
 <h1>Articles List</h1>
+Our blog has <%= Article.public_count %> articles and counting!
+
+
 <a href="/articles/new">create article</a>
 
 <% @articles.each do |article| %>
-    <h4>ID: <%= article.id %></h4>
-    <h4>title: <%= article.title %></h4>
-    <h4>body: <%= article.body %></h4>
-    <a href="/articles/<%= article.id %>">Go to article</a>
-    <hr />
+    <% unless article.archived? %>
+        <h4>ID: <%= article.id %></h4>
+        <h4>title: <%= article.title %></h4>
+        <h4>body: <%= article.body %></h4>
+        <a href="/articles/<%= article.id %>">Go to article</a>
+        <hr />
+    <% end %>
 <% end %>
